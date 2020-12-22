@@ -13,8 +13,9 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   isSignedIn = false;
+  err = false;
 
-  constructor(public firebaseAuth: AngularFireAuth, private router: Router, private route: ActivatedRoute, public fi: FirebaseService) { }
+  constructor(public firebaseAuth: AngularFireAuth, private router: Router, private route: ActivatedRoute, public firebaseServise: FirebaseService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -23,10 +24,6 @@ export class LoginComponent implements OnInit {
       password: new FormControl(null, 
         [Validators.minLength(6), Validators.required ])
     })
-
-    // this.route.queryParams.subscribe((params: Params) => {
-       
-    // })
 
     if(localStorage.getItem('user') !== null) {
       this.isSignedIn = true;
@@ -38,21 +35,15 @@ export class LoginComponent implements OnInit {
   async signin(email:string, password:string) {
     this.loginForm.disable();
 
-    console.log("SIGNIN 1")
-    await this.fi.signin(email, password)
-      .then(res => {
-        
+    await this.firebaseServise.signin(email, password)
+      .then(res => {        
       }).catch(error => {
-        console.log("err")
+        console.log("err in login")
         this.loginForm.enable();
       })
   }
   handleLogout() {
     this.isSignedIn = false;
     
-  }
-
-  onSubmit():void {
-
   }
 }

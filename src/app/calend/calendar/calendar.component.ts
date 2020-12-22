@@ -1,13 +1,11 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import * as moment from 'moment';
-import { BehaviorSubject } from 'rxjs';
 import { DateService } from 'src/app/services/date.service';
-import { Day } from '../../interfaces/day';
 import { Week  } from '../../interfaces/week';
-import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
-//import { FirebaseService } from 'src/app/services/firebase.service';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TaskService } from 'src/app/services/task.service';
+import { Task } from 'src/app/interfaces/task';
 
 @Component({
   selector: 'app-calendar',
@@ -18,17 +16,22 @@ export class CalendarComponent implements OnInit {
   @Output() isLogout = new EventEmitter<void>();
 
   calendar: Week[];
-  date: BehaviorSubject<moment.Moment>;
 
   modal: boolean = false; // for popup
   calendarForm: FormGroup;
 
-  dateForPopup: moment.Moment;
-//  public firebaseService: FirebaseService
-  constructor(public dataService: DateService) { }
+  arr: Task[] = [];
+  finTask: Task[] = [];
+  tempArr;
+
+  tempTask = {
+    description: '',
+    time: ''
+  }
+
+  constructor(public dataService: DateService, public taskService: TaskService) { }
 
   ngOnInit(): void {
-    this.date = this.dataService.date;
     this.dataService.date.subscribe(this.calend.bind(this));
 
     this.calendarForm = new FormGroup({
@@ -37,8 +40,9 @@ export class CalendarComponent implements OnInit {
       description: new FormControl(null,
         [Validators.required])
     })
+    this.finTask = this.taskService.readAll()
+    this.readTaskForModal();
   }
-  
 
   calend(curDate: moment.Moment) {
     let calendar = [];
@@ -60,12 +64,8 @@ export class CalendarComponent implements OnInit {
     this.calendar = calendar;
   }
 
-  select(day: moment.Moment) {
-    this.dataService.changeDate(day)
-  }
-  
   minusMonth(): void {
-   this.dataService.minusMonth();
+    this.dataService.minusMonth();
   }
 
   plusMonth(): void {
@@ -73,10 +73,11 @@ export class CalendarComponent implements OnInit {
   }
 
   // for popup
-  changeModal(day: moment.Moment):void {
-    this.modal = true;
-    this.dateForPopup = day; 
-    console.log(this.dateForPopup);   
+changeModal(day: moment.Moment):void {
+  this.modal = true;
+  this.dataService.changeDate(day);
+
+  this.readTaskForModal();
   }
 
   closeModal() {
@@ -85,7 +86,37 @@ export class CalendarComponent implements OnInit {
   }
 
   logout() {
-   // this.firebaseService.logout();
     this.isLogout.emit();
+  }
+
+  submit() {
+    const {description} = this.calendarForm.value;
+    const {hours} = this.calendarForm.value; 
+
+    const Ui = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
+    const task: Task = {
+      date: this.dataService.date.value.format('DD-MM-YYYY'),
+      description,
+      time: hours,
+      user: Ui
+    }
+    this.taskService.create(task)
+    this.modal = false;
+  }
+
+  readTaskForModal(): void {
+    console.log("READDDDD")
+    const userUID = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
+
+    this.tempArr = this.finTask.filter(item => item.user == userUID).filter(item => item.date == this.dataService.date.value.format("DD-MM-YYYY"))
+    if (this.tempArr.length) {
+      this.tempArr.map((item) => {
+        this.tempTask.description = item.description;
+        this.tempTask.time = item.time
+      }) 
+    } else {
+      this.tempTask.description = '';
+      this.tempTask.time = ''
+    }
   }
 }

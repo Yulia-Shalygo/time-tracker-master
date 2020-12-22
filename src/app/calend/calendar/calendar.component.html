@@ -3,7 +3,7 @@
         
         <div class="date__header">
             <i class="material-icons" (click)="minusMonth()">arrow_left</i>
-            <div class="year">{{date | async | moment}}</div>
+            <div class="year">{{dataService.date | async | moment}}</div>
             <i class="material-icons" (click)="plusMonth()">arrow_right</i>
         </div>
 
@@ -11,19 +11,19 @@
             <table class="tbody">
                 <thead>
                 <tr class="months">
-                    <th class="calendar__day">M</th>
-                    <th class="calendar__day">T</th>
-                    <th class="calendar__day">W</th>
-                    <th class="calendar__day">T</th>
-                    <th class="calendar__day">F</th>
-                    <th class="calendar__day">S</th>
-                    <th class="calendar__day">S</th>
+                    <th class="calendar__day">Monday</th>
+                    <th class="calendar__day">Tuesday</th>
+                    <th class="calendar__day">Wednesday</th>
+                    <th class="calendar__day">Thursday</th>
+                    <th class="calendar__day">Friday</th>
+                    <th class="calendar__day">Saturday</th>
+                    <th class="calendar__day">Sunday</th>
                 </tr>
                 </thead>
                 <tbody >
                     <tr class="trow" *ngFor="let week of calendar">
-                        <td  class="tdata" (click)="select(day.value)" *ngFor="let day of week.days">
-                            <a type="button" class="active calendar__number" (click)="changeModal(day)" [class.selected]="day.selected"  [class.active]="day.active">  {{day.value | date: 'd'}}</a>
+                        <td  class="tdata" *ngFor="let day of week.days">
+                            <a type="button" class="active calendar__number" (click)="changeModal(day.value)" [class.selected]="day.selected"  [class.active]="day.active">  {{day.value | date: 'd'}}</a>
                         </td>
                     </tr>
                 </tbody>
@@ -46,10 +46,11 @@
                         </button>
                     </div>
 
-                    <textarea  class="text-area form-control" formControlName="description" cols="10" rows="10" placeholder="Description"></textarea>
+                    <textarea [(ngModel)]="tempTask.description" id="description" class="text-area form-control" formControlName="description" cols="10" rows="10" placeholder="Description">
+                    </textarea>
                     <span *ngIf="calendarForm.get('description').invalid && calendarForm.get('description').touched" class="error-text">Description can't be empty</span>
 
-                    <input type="text" size="100 " formControlName="hours" class="form-control" placeholder="Hours">
+                    <input [(ngModel)]="tempTask.time" type="text" name="time" size="100 " formControlName="hours" class="form-control" placeholder="Hours" />
                     <span *ngIf="calendarForm.get('hours').invalid && calendarForm.get('hours').touched" class="error-text">Enter a valid hours</span>
 
                 </div>
@@ -57,7 +58,7 @@
             </div>
 
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary" [disabled]="calendarForm.invalid">Save changes</button>
+            <button type="button" (click)="submit()" class="btn btn-primary" [disabled]="calendarForm.invalid">Save changes</button>
             </div>
         </div>
         </div>

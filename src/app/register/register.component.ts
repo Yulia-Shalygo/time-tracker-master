@@ -31,7 +31,6 @@ export class RegisterComponent implements OnInit {
   }
 
   async onSignup(email:string, password:string) {
-    console.log("CREATE")
     await this.firebaseService.register(email, password);
     if(this.firebaseService.isLoggedIn) {
       this.isSignedIn = true;

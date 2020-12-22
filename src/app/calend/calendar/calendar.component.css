@@ -6,13 +6,8 @@
 
 .container {
   display: flex;
-  margin-top: 50px;
+  margin-top: 20px;
 }
-.date-item {
-  border: 2px solid  #009688;
-  border-radius: 10%;
-}
-
 /* Calendar header with date*/
 .date__header {
   display: flex;
@@ -24,7 +19,13 @@
 }
 
 /* Calendar */
-
+tr, td {
+  min-width: 145px;
+  border: 2px solid#009688;
+}
+.months {
+  text-align: center;
+}
 .tbody{
   border-collapse: separate;
   border-spacing: 7px;
@@ -32,12 +33,12 @@
 .calendar__number{
   text-transform: none;
   color: #212121;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .tdata {
   padding: 0px 5px;
-  text-align: center;
+  /* text-align: center; */
 }
 .tdata:last-child {
   color: red;
@@ -51,9 +52,10 @@
 }
 
 .active {  /* today */
-  border-radius: 30%;
+  /* border-radius: 30%; */
   border: 2px solid  #009688;
-  padding: 7px;
+  border-radius: 50%;
+  padding: 0 3px;
 }
 
 .selected {

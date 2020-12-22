@@ -6,16 +6,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DateService {
-  //curDate = moment().format('MMMM YYYY ')
 
  public date: BehaviorSubject<moment.Moment> = new BehaviorSubject(moment());
   
-  constructor() {
-   }
-
-  // getCurrentDate(): moment.Moment {
-  //   return moment();//.format('MMMM YYYY');
-  // }
+  constructor() { }
 
   changeDate(date: moment.Moment) {
     const value = this.date.value.set({

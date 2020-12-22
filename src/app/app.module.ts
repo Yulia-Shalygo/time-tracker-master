@@ -7,12 +7,11 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CalendarComponent } from './calend/calendar/calendar.component';
-import { CalendarPageComponent } from './calend/calendar-page/calendar-page.component';
-import { MomentPipe } from './services/moment.pipe';
 import { FirebaseService } from './services/firebase.service';
+
 import { AngularFireModule } from '@angular/fire';
-import { HeaderCalendComponent } from './calend/header-calend/header-calend.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,20 +19,15 @@ import { HeaderCalendComponent } from './calend/header-calend/header-calend.comp
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-
-    CalendarComponent,
-    CalendarPageComponent,
-    MomentPipe,
-    HeaderCalendComponent,
-   // AngularFireAuth
- 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+    RouterModule,
+    HttpClientModule,
+    
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyDHgLlhMq-ZRwj-5HDckorCJhJDBOKfk84",
       authDomain: "time-tracker-9eb9c.firebaseapp.com",
