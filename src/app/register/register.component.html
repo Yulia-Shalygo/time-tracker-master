@@ -1,7 +1,7 @@
 <div class="container">
     <div class="col">
 
-        <form class="form-group signin" [formGroup]="formRegister" (onSubmit)="onSubmit()">
+        <form class="form-group signup" [formGroup]="formRegister" (onSubmit)="onSubmit()">
             <span class="title">Create your account</span>
 
             <div class="form-group">
@@ -17,6 +17,7 @@
             <div class="form-group help">
                 <input #passwordConfirm type="password" formControlName="password2" class="form-control" placeholder="Confirm password">
                 <span *ngIf=" (formRegister.get('password1').value != formRegister.get('password2').value) && formRegister.get('password2').touched" class="error-text">The password confirmation does not match</span>
+                <span *ngIf="err" class="error-text">Account with this email address already exists</span>
             </div>
 
             <input  (click)="onSignup(email.value, password.value)" class="btn btn-default" [disabled]="formRegister.invalid" type="submit" value="Create" />

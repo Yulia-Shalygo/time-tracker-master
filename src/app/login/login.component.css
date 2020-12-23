@@ -2,12 +2,6 @@
   font-family: Poppins-Medium;
   src: url('../../fonts/poppins/Poppins-Medium.ttf'); 
 }
-
-.col{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .container{
   text-align: center;
   width: 100%;  
@@ -19,6 +13,16 @@
   padding: 15px;
   position: relative;
   background-color: #fff;
+}
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.col{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .form-control{
     width: 500px;
@@ -35,10 +39,11 @@
 .btn{
   padding: 5px 50px;
   border: .5px solid #212121;
+  max-width: 200px;
 }
 
 .btn:hover {
-    background-color: #00897b;
-    color: #fff;
-    transition: background 0.3s linear, color 0.1s linear;
+  background-color: #00897b;
+  color: #fff;
+  transition: background 0.3s linear, color 0.1s linear;
 }

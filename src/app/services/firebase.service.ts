@@ -19,7 +19,12 @@ export class FirebaseService {
         localStorage.setItem('user_id', JSON.stringify(res.user.uid))
        
         this.router.navigate(['/calendar'])
-      }).catch(error => {
+      }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, ": ", errorMessage);
+
+        this.router.errorHandler(error);
       })
   }
 
@@ -27,7 +32,17 @@ export class FirebaseService {
     await this.fireAuth.createUserWithEmailAndPassword(email, password)
       .then(res => {
         this.isLoggedIn = true;
+
         localStorage.setItem('user', JSON.stringify(res.user))
+        localStorage.setItem('user_id', JSON.stringify(res.user.uid))
+
+        this.router.navigate(['/calendar'])
+      }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, ": ", errorMessage);
+
+        this.router.errorHandler(error);
       })
   }
   

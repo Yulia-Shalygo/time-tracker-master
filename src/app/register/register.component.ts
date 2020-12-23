@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
 
   formRegister: FormGroup;
   isSignedIn = false;
+  err = false;
 
   constructor(public firebaseService: FirebaseService) { }
 
@@ -31,7 +32,12 @@ export class RegisterComponent implements OnInit {
   }
 
   async onSignup(email:string, password:string) {
-    await this.firebaseService.register(email, password);
+    await this.firebaseService.register(email, password).catch(error => {      
+      this.formRegister.reset();
+      this.formRegister.enable();
+      this.err = true;
+    })
+
     if(this.firebaseService.isLoggedIn) {
       this.isSignedIn = true;
     }

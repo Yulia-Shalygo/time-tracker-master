@@ -23,6 +23,7 @@ export class CalendarComponent implements OnInit {
   arr: Task[] = [];
   finTask: Task[] = [];
   tempArr;
+  fullArr;
 
   tempTask = {
     description: '',
