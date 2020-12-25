@@ -23,16 +23,19 @@ export class CalendarComponent implements OnInit {
   arr: Task[] = [];
   finTask: Task[] = [];
   tempArr;
-  fullArr;
 
-  tempTask = {
+  tempTask: Task = {
     description: '',
-    time: ''
+    time: '',
+    date: '',
+    user: ''
   }
 
   constructor(public dataService: DateService, public taskService: TaskService) { }
 
   ngOnInit(): void {
+    const Ui = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
+
     this.dataService.date.subscribe(this.calend.bind(this));
 
     this.calendarForm = new FormGroup({
@@ -42,7 +45,6 @@ export class CalendarComponent implements OnInit {
         [Validators.required])
     })
     this.finTask = this.taskService.readAll()
-    this.readTaskForModal();
   }
 
   calend(curDate: moment.Moment) {
@@ -74,11 +76,11 @@ export class CalendarComponent implements OnInit {
   }
 
   // for popup
-changeModal(day: moment.Moment):void {
-  this.modal = true;
-  this.dataService.changeDate(day);
+  changeModal(day: moment.Moment):void {
+    this.modal = true;
+    this.dataService.changeDate(day);
 
-  this.readTaskForModal();
+    this.readTaskForModal();
   }
 
   closeModal() {
@@ -96,7 +98,7 @@ changeModal(day: moment.Moment):void {
 
     const Ui = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
     const task: Task = {
-      date: this.dataService.date.value.format('DD-MM-YYYY'),
+      date: this.dataService.date.value.format('YYYY-MM-DD'),
       description,
       time: hours,
       user: Ui
@@ -109,15 +111,20 @@ changeModal(day: moment.Moment):void {
     console.log("READDDDD")
     const userUID = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
 
-    this.tempArr = this.finTask.filter(item => item.user == userUID).filter(item => item.date == this.dataService.date.value.format("DD-MM-YYYY"))
+    this.tempArr = this.finTask.filter(item => item.user == userUID).filter(item => item.date == this.dataService.date.value.format("YYYY-MM-DD"))
+    console.log(this.tempArr)
     if (this.tempArr.length) {
       this.tempArr.map((item) => {
         this.tempTask.description = item.description;
         this.tempTask.time = item.time
+        this.tempTask.date = item.date
+        this.tempTask.user = item.user
       }) 
     } else {
       this.tempTask.description = '';
-      this.tempTask.time = ''
+      this.tempTask.time = '';
+      this.tempTask.date = '';
+      this.tempTask.user = '';
     }
   }
 }

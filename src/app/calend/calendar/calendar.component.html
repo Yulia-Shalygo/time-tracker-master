@@ -23,7 +23,7 @@
                 <tbody >
                     <tr class="trow" *ngFor="let week of calendar">
                         <td  class="tdata" *ngFor="let day of week.days">
-                            <a type="button" class="active calendar__number" (click)="changeModal(day.value)" [class.selected]="day.selected"  [class.active]="day.active">  {{day.value | date: 'd'}}</a>
+                            <a type="button" class="active calendar__number" (click)="changeModal(day.value)" [class.selected]="day.selected"  [class.active]="day.active">  {{day.value | date: 'd'}}</a>                            
                         </td>
                     </tr>
                 </tbody>

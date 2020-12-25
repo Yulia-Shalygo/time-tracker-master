@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import { DataSnapshot } from '@angular/fire/database/interfaces';
+import { DateService } from './date.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,19 @@ import { DataSnapshot } from '@angular/fire/database/interfaces';
 export class TaskService {
   static url = 'https://time-tracker-9eb9c-default-rtdb.firebaseio.com/tasks';
 
-  constructor(private http: HttpClient) { }
+  constructor(public dataService: DateService) { }
 
   create(task: Task) { 
-    firebase.database().ref(`tasks/${task.date}`).set(task).then(res => {
+    firebase.database().ref(`tasks/${task.user}/${task.date}`).set(task).then(res => {
     })
   }
 
   readAll(): Task[] {
-    console.log("READ")
     let arr:Task[] = [];
 
-    firebase.database().ref(`tasks`) 
+    const userUID = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
+
+    firebase.database().ref(`tasks/${userUID}`) 
     .on('value',(data: DataSnapshot) => {
        data.forEach((child: DataSnapshot) => {
          arr.push(child.val())
