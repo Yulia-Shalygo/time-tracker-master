@@ -106,13 +106,12 @@ export class CalendarComponent implements OnInit {
 
   readTaskForModal(): void {
     this.tempArr = this.finTask.filter(item => item.user == this.userUID).filter(item => item.date == this.dataService.date.value.format("YYYY-MM-DD"))
-    console.log(this.tempArr)
     if (this.tempArr.length) {
       this.tempArr.map((item) => {
-        this.tempTask.description = item.description;
-        this.tempTask.time = item.time
-        this.tempTask.date = item.date
-        this.tempTask.user = item.user
+      this.tempTask.description = item.description;
+      this.tempTask.time = item.time
+      this.tempTask.date = item.date
+      this.tempTask.user = item.user
       }) 
     } else {
       this.tempTask.description = '';
