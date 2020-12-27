@@ -14,6 +14,7 @@ import { Task } from 'src/app/interfaces/task';
 })
 export class CalendarComponent implements OnInit {
   @Output() isLogout = new EventEmitter<void>();
+  userUID = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
 
   calendar: Week[];
 
@@ -34,10 +35,7 @@ export class CalendarComponent implements OnInit {
   constructor(public dataService: DateService, public taskService: TaskService) { }
 
   ngOnInit(): void {
-    const Ui = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
-
     this.dataService.date.subscribe(this.calend.bind(this));
-
     this.calendarForm = new FormGroup({
       hours: new FormControl(null,
         [Validators.required,  Validators.max(24), Validators.min(0)]),
@@ -96,22 +94,18 @@ export class CalendarComponent implements OnInit {
     const {description} = this.calendarForm.value;
     const {hours} = this.calendarForm.value; 
 
-    const Ui = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
     const task: Task = {
       date: this.dataService.date.value.format('YYYY-MM-DD'),
       description,
       time: hours,
-      user: Ui
+      user: this.userUID
     }
     this.taskService.create(task)
     this.modal = false;
   }
 
   readTaskForModal(): void {
-    console.log("READDDDD")
-    const userUID = localStorage.getItem('user_id').replace("\"", "").replace("\"", "");
-
-    this.tempArr = this.finTask.filter(item => item.user == userUID).filter(item => item.date == this.dataService.date.value.format("YYYY-MM-DD"))
+    this.tempArr = this.finTask.filter(item => item.user == this.userUID).filter(item => item.date == this.dataService.date.value.format("YYYY-MM-DD"))
     console.log(this.tempArr)
     if (this.tempArr.length) {
       this.tempArr.map((item) => {

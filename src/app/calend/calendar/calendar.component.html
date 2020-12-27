@@ -46,15 +46,12 @@
                         </button>
                     </div>
 
-                    <textarea [(ngModel)]="tempTask.description" id="description" class="text-area form-control" formControlName="description" cols="10" rows="10" placeholder="Description">
-                    </textarea>
+                    <textarea [(ngModel)]="tempTask.description" id="description" class="text-area form-control" formControlName="description" cols="10" rows="10" placeholder="Description"></textarea>
                     <span *ngIf="calendarForm.get('description').invalid && calendarForm.get('description').touched" class="error-text">Description can't be empty</span>
 
                     <input [(ngModel)]="tempTask.time" type="text" name="time" size="100 " formControlName="hours" class="form-control" placeholder="Hours" />
                     <span *ngIf="calendarForm.get('hours').invalid && calendarForm.get('hours').touched" class="error-text">Enter a valid hours</span>
-
                 </div>
-            
             </div>
 
             <div class="modal-footer">
