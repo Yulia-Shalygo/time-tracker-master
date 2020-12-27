@@ -3,11 +3,11 @@
   font-family: Poppins-Medium;
   src: url('../../../fonts/poppins/Poppins-Medium.ttf'); 
 } 
-
 .container {
-  display: flex;
+  border: 2px solid red;
   margin-top: 20px;
 }
+
 /* Calendar header with date*/
 .date__header {
   display: flex;
@@ -17,31 +17,30 @@
   font-size: 20px;
   padding: 0px 30px;
 }
+.material-icons {
+  cursor: pointer;
+}
 
 /* Calendar */
 tr, td {
-  min-width: 145px;
   border: 2px solid#009688;
 }
 .months {
   text-align: center;
 }
 .tbody{
+  border: 2px solid blue;
   border-collapse: separate;
   border-spacing: 7px;
 }
 .calendar__number{
-  text-transform: none;
+  text-decoration: none;
   color: #212121;
   font-size: 20px;
 }
-
 .tdata {
   padding: 0px 5px;
-  /* text-align: center; */
-}
-.tdata:last-child {
-  color: red;
+  cursor: pointer;
 }
 .calendar__day:nth-child(7) {
   color: #ff685d;
@@ -52,35 +51,61 @@ tr, td {
 }
 
 .active {  /* today */
-  /* border-radius: 30%; */
   border: 2px solid  #009688;
   border-radius: 50%;
   padding: 0 3px;
 }
-
 .selected {
   font-weight: 900;
   color: #009688;
 }
-
-.header_popup {
-  display: flex;
-  margin-bottom: 5px;
+.disable {
+  opacity: .3;
 }
+
 /* Modal */
 .modal {
   background-color: rgba(0, 0, 0, 0.8);
 }
+.header_popup {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
 .show {
-    display: block;
+  display: block;
 }
 .text-area {
   margin-bottom: 7px;
 }
 .close {
+  padding: 0rem;
+  margin: 0rem;
   color:#009688;
   font-weight: 900;
+  outline: none;
 }
 .btn {
+  cursor: pointer;
   background-color: #009688;
 }
+
+
+/* @media (max-width: 1200px) {
+  table.tbody {
+ 
+  }
+}
+
+@media (max-width: 992px) {
+ table.tbody {
+   
+  }
+}
+@media (max-width: 767px) {
+ table.tbody {
+    
+  }
+} */
+
+

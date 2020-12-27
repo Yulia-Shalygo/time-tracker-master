@@ -58,7 +58,9 @@ export class CalendarComponent implements OnInit {
             const value = date.add(1, 'day').clone()
             const active = moment().isSame(value, 'date') // curDate
             const selected = curDate.isSame(value, 'date')
-            return { value, active, selected }
+
+            const disable = !curDate.isSame(value, 'month');
+            return { value, active, selected, disable }
           })         
       })
     }
@@ -101,6 +103,7 @@ export class CalendarComponent implements OnInit {
       user: this.userUID
     }
     this.taskService.create(task)
+    this.calendarForm.reset();
     this.modal = false;
   }
 

@@ -25,23 +25,29 @@
   align-items: center;
 }
 .form-control{
-    width: 500px;
+  width: 500px;
 }
 .title {
   font-family: Poppins-Medium;
   font-size: 30px;
   color: #212121;
-
   width: 100%;
   top: 0;
   left: 0;
+}
+.help {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 5px;
+  line-height: .7;
 }
 .btn{
   padding: 5px 50px;
   border: .5px solid #212121;
   max-width: 200px;
+  cursor: pointer;
 }
-
 .btn:hover {
   background-color: #00897b;
   color: #fff;

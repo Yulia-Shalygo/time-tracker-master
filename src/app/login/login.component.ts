@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       email: new FormControl(null, 
         [Validators.required, Validators.email]),
       password: new FormControl(null, 
-        [Validators.minLength(6), Validators.required ])
+        [Validators.minLength(6), Validators.required])
     })
 
     if(localStorage.getItem('user') !== null) {
@@ -44,6 +44,5 @@ export class LoginComponent implements OnInit {
   }
   handleLogout() {
     this.isSignedIn = false;
-    
   }
 }
