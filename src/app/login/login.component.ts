@@ -42,7 +42,4 @@ export class LoginComponent implements OnInit {
         this.err = true;
       })
   }
-  handleLogout() {
-    this.isSignedIn = false;
-  }
 }

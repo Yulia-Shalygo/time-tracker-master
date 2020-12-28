@@ -14,8 +14,6 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent}
     ]},
     { path: 'calendar', canActivate: [AuthGuardService], loadChildren: () => import('./calend/calendar-page-m/calendar-page-m.module').then(m => m.CalendarPageMModule) },
-
-   // { path: 'calendar',  component: CalendarPageComponent, canActivate: [AuthGuardService]}, // canActivate: [AuthGuardService]
     {path: 'logout', component: HeaderCalendComponent},
 ]
 

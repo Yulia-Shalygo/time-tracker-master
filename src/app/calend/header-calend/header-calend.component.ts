@@ -16,6 +16,7 @@ export class HeaderCalendComponent implements OnInit {
 
   logout(): void {
     this.firebaseService.isLoggedIn = false;
+    localStorage.setItem('login',JSON.stringify(this.firebaseService.isLoggedIn))
     this.router.navigate(['/login']);
   }
 }

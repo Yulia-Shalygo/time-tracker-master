@@ -12,6 +12,7 @@ import { FirebaseService } from './services/firebase.service';
 import { AngularFireModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,15 +29,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     HttpClientModule,
     
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyDHgLlhMq-ZRwj-5HDckorCJhJDBOKfk84",
-      authDomain: "time-tracker-9eb9c.firebaseapp.com",
-      projectId: "time-tracker-9eb9c",
-      storageBucket: "time-tracker-9eb9c.appspot.com",
-      messagingSenderId: "4227827929",
-      appId: "1:4227827929:web:6ccabd0cdb6247aa5856c8",
-      measurementId: "G-43L14YMZ0Q"
-    }),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

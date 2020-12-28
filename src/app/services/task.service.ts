@@ -6,6 +6,7 @@ import 'firebase/auth';
 import 'firebase/database';
 import { DataSnapshot } from '@angular/fire/database/interfaces';
 import { DateService } from './date.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,13 @@ import { DateService } from './date.service';
 export class TaskService {
   static url = 'https://time-tracker-9eb9c-default-rtdb.firebaseio.com/tasks';
 
-  constructor(public dataService: DateService) { }
+  constructor(public dataService: DateService) {
+    if(!firebase.apps.length) {
+      firebase.initializeApp(environment.firebase)
+    } else {
+      firebase.app();
+    }
+   }
 
   create(task: Task) { 
     firebase.database().ref(`tasks/${task.user}/${task.date}`).set(task).then(res => {

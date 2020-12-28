@@ -10,8 +10,10 @@ export class AuthGuardService implements CanActivate {
   constructor(public router: Router, public firebaseService: FirebaseService) { }
   
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-      if (this.firebaseService.isLoggedIn !== true) {
-          this.router.navigate(['login']);
+      const login = JSON.parse(localStorage.getItem('login'));
+
+      if (login !== true) {
+        this.router.navigate(['login']);
       }
       return true;   
     }

@@ -4,7 +4,6 @@
   src: url('../../../fonts/poppins/Poppins-Medium.ttf'); 
 } 
 .container {
-  border: 2px solid red;
   margin-top: 20px;
 }
 
@@ -29,7 +28,6 @@ tr, td {
   text-align: center;
 }
 .tbody{
-  border: 2px solid blue;
   border-collapse: separate;
   border-spacing: 7px;
 }
@@ -91,21 +89,28 @@ tr, td {
 }
 
 
-/* @media (max-width: 1200px) {
-  table.tbody {
+@media (max-width: 1200px) {
+  .calendar__day {
+    font-size: 20px;
  
   }
 }
-
 @media (max-width: 992px) {
- table.tbody {
-   
+  .calendar__day {
+    font-size: 18px;
+ 
   }
 }
-@media (max-width: 767px) {
- table.tbody {
-    
+@media (max-width: 800px) {
+  .calendar__day {
+    font-size: 12px;
   }
-} */
+}
+@media (max-width: 500px) {
+  .calendar__day {
+    font-size: 10px;
+  }
+}
+
 
 
