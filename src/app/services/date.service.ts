@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,12 @@ export class DateService {
   
   constructor() { }
 
-  changeDate(date: moment.Moment) {
+  changeDate(date: moment.Moment): void {
     const value = this.date.value.set({
       date: date.date(),
       month: date.month()
-    })
-    this.date.next(value)
+    });
+    this.date.next(value);
   }
   getDate(): moment.Moment {
     return this.date.value;

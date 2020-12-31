@@ -9,14 +9,16 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class HeaderCalendComponent implements OnInit {
 
-  constructor(public firebaseService: FirebaseService, private router: Router) { }
+  constructor(
+    public firebaseService: FirebaseService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
 
   logout(): void {
-    this.firebaseService.isLoggedIn = false;
-    localStorage.setItem('login',JSON.stringify(this.firebaseService.isLoggedIn))
+    this.firebaseService.logout();
     this.router.navigate(['/login']);
   }
 }

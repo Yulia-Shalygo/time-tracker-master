@@ -1,8 +1,7 @@
 @font-face {
-    font-family: Poppins-Regular;
-    src: url('../../fonts/poppins/Poppins-Regular.ttf'); 
-  }
-  
+	font-family: Poppins-Regular;
+	src: url('../../fonts/poppins/Poppins-Regular.ttf'); 
+}  
 .header{
 	background-color: #333;
 	padding: 10px 0px;

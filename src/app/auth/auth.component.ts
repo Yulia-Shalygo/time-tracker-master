@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,7 +7,7 @@ import { FirebaseService } from '../services/firebase.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(public firebaseService: FirebaseService) { }
+  constructor() { }
 
 
   ngOnInit(): void {

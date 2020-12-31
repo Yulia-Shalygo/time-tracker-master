@@ -1,8 +1,7 @@
 @font-face {
     font-family: Poppins-Regular;
     src: url('../../../fonts/poppins/Poppins-Regular.ttf'); 
-  }
-  
+}
 .header{
 	background-color: #333;
 	padding: 10px 0px;
@@ -18,22 +17,18 @@
 	font-size: 30px;
 	font-weight: 700;
 }
-
 .links{
 	font-size: 20px;
 }
-
 .nav__link{
 	margin: 0 15px;
 	position: relative; 
 	color: #fff;
 	text-decoration: none;
 }
-
 .nav__link:hover, .logo:hover{
 	color: #00897b;
 }
-
 .nav__link:after{
 	content: "";
 	display: block;
@@ -46,7 +41,6 @@
 	transition: opacity 0.1s linear; 
 	z-index: 1;
 }
-
 .nav__link:hover:after{
 	opacity: 1;
 }

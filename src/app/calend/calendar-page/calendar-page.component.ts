@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Moment } from 'moment';
-import { DateService } from 'src/app/services/date.service';
 
 @Component({
   selector: 'app-calendar-page',
@@ -9,9 +7,7 @@ import { DateService } from 'src/app/services/date.service';
 })
 export class CalendarPageComponent implements OnInit {
 
-  popup: boolean;
-
-  constructor(private dataService: DateService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
