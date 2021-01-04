@@ -13,7 +13,7 @@ export class FirebaseService {
 
   constructor(public fireAuth: AngularFireAuth, private router: Router) { }
 
-  signin(email:string, password:string): Promise<void> {
+  signin(email: string, password: string): Promise<void> {
     return this.fireAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
       return this.fireAuth.signInWithEmailAndPassword(email, password).then(res => {
         this.user =  firebase.auth().currentUser;

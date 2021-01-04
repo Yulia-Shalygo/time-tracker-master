@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.formRegister.value);
   }
 
-  async onSignup(email:string, password:string): Promise<void> {
+  async onSignup(email: string, password: string): Promise<void> {
     await this.firebaseService.register(email, password).catch(error => {      
       this.formRegister.reset();
       this.formRegister.enable();

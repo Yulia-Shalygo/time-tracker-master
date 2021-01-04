@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   err = false;
   userId: any;
 
-  constructor(public firebaseServise: FirebaseService) { }
+  constructor(public firebaseServiсe: FirebaseService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  async signin(email:string, password:string): Promise<void> {
+  async signin(email: string, password: string): Promise<void> {
     this.loginForm.disable();
 
-    await this.firebaseServise.signin(email, password)
+    await this.firebaseServiсe.signin(email, password)
       .catch(error => {      
         this.loginForm.reset();
         this.loginForm.enable();

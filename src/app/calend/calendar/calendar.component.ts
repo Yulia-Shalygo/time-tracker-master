@@ -87,8 +87,7 @@ export class CalendarComponent implements OnInit {
   }
 
   submit(): void {
-    const { description } = this.calendarForm.value;
-    const { hours } = this.calendarForm.value; 
+    const { description, hours } = this.calendarForm.value;
 
     this.userUID = firebase.auth().currentUser.uid;
 
@@ -97,7 +96,8 @@ export class CalendarComponent implements OnInit {
       description,
       time: hours,
       user: this.userUID
-    }
+    };
+
     this.taskService.create(task);
     this.calendarForm.reset();
     this.modal = false;
@@ -106,14 +106,14 @@ export class CalendarComponent implements OnInit {
   readTaskForModal(): void {
     this.userUID = firebase.auth().currentUser.uid;
 
-    this.tempArr = this.finTask.filter(item => item.user == this.userUID).filter(item => item.date == this.dataService.date.value.format("YYYY-MM-DD"));
+    this.tempArr = this.finTask.filter(item => item.user === this.userUID).filter(item => item.date === this.dataService.date.value.format("YYYY-MM-DD"));
     if (this.tempArr.length) {
       this.tempArr.map((item) => {
         this.tempTask.description = item.description;
         this.tempTask.time = item.time;
         this.tempTask.date = item.date;
         this.tempTask.user = item.user;
-      }) 
+      });
     } else {
       this.tempTask.description = '';
       this.tempTask.time = '';
